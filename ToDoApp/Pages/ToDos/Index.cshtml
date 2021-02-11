@@ -1,0 +1,54 @@
+﻿@page
+@model ToDoApp.Pages.ToDos.IndexModel
+
+@{
+    ViewData["Title"] = "ToDoListApp";
+}
+
+<h1>Your todo list</h1>
+
+<p>
+    <a asp-page="Create">Add a new to do item</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDoItem[0].TaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDoItem[0].TypeOfTask)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDoItem[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDoItem[0].Done)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var todo in Model.ToDoItem) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => todo.TaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => todo.TypeOfTask)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => todo.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => todo.Done)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@todo.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@todo.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@todo.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
